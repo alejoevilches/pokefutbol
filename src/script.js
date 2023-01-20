@@ -61,11 +61,7 @@ let buttons=[messiButton, cristianoButton, delacruzButton, gvardiolButton, dania
 
 /*Determinar a que jugador hice click*/
 buttons.forEach(button => {
-    button.addEventListener("click", prueba)
+    button.addEventListener("click", ()=>{
+        console.log(button.id);
+    })
 });
-
-function prueba(e){
-    console.log(e);
-}
-
-
