@@ -36,14 +36,14 @@ let cardContainer=document.getElementById("card_container");
 function createCards(characters){
         characters.forEach(character => {
             cardContainer.innerHTML+=`
-            <article class="card">
+            <a href="#" id="${character.name}" style="text-decoration:none"><article class="card">
             <div class="image_container" style="background-image: url(${character.photo})"></div>
             <div class="card_description">
                 <h3 class="card_text">${character.name}</h3>
                 <h3 class="card_subtext">${character.team}</h3>
                 <h3 class="card_subtext">Bueno en: ${character.goodAt}</h3>
             </div>
-        </article>
+        </article></a>
         `
         });
 }
