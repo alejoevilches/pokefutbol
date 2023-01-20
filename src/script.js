@@ -16,8 +16,8 @@ class Characters{
 /*Acá se crea a cada personaje*/
 let messi=new Characters("Lionel Messi", "Paris Saint-Germain", "Ataque", "/src/assets/img/messi.png", 5);
 let tchouameni=new Characters("Aurelien Tchouameni", "Real Madrid", "Velocidad", "/src/assets/img/tchouameni.png", 5);
-let gvardiol=new Characters("Josko Gvardiol", "Red Bull Leipzig", "Defensa", "/src/assets/img/gvardiol.png", 5);
-let cristiano=new Characters("Cristiano Ronaldo", "Al Nassr", "Ataque", "/src/assets/img/cristiano.png", 5);
+let gvardiol=new Characters("Josko Gvardiol", "Red Bull Leipzig", "Marcaje", "/src/assets/img/gvardiol.png", 5);
+let cristiano=new Characters("Cristiano Ronaldo", "Al Nassr", "Disparos", "/src/assets/img/cristiano.png", 5);
 let delacruz=new Characters("Nicolas De la Cruz", "River Plate", "Pases", "/src/assets/img/delacruz.png", 5);
 let danialves=new Characters("Dani Alves", "Pumas UNAM", "Defensa", "/src/assets/img/danialves.png", 5);
 characters.push(messi, cristiano, delacruz, gvardiol, danialves, tchouameni);
@@ -35,7 +35,7 @@ let cardContainer=document.getElementById("card_container");
 
 function createCards(characters){
         characters.forEach(character => {
-            cardContainer.innerHTML=`
+            cardContainer.innerHTML+=`
             <article class="card">
             <div class="image_container" style="background-image: url(${character.photo})"></div>
             <div class="card_description">
