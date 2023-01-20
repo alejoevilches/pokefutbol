@@ -3,8 +3,9 @@ let characters=[]
 
 /*Clase creadora de personajes*/
 class Characters{
-    constructor(name, team, goodAt, photo, lives){
+    constructor(name, id, team, goodAt, photo, lives){
         this.name=name;
+        this.id=id
         this.team=team;
         this.goodAt=goodAt;
         this.photo=photo;
@@ -14,12 +15,12 @@ class Characters{
 }
 
 /*Acá se crea a cada personaje*/
-let messi=new Characters("Lionel Messi", "Paris Saint-Germain", "Ataque", "/src/assets/img/messi.png", 5);
-let tchouameni=new Characters("Aurelien Tchouameni", "Real Madrid", "Velocidad", "/src/assets/img/tchouameni.png", 5);
-let gvardiol=new Characters("Josko Gvardiol", "Red Bull Leipzig", "Marcaje", "/src/assets/img/gvardiol.png", 5);
-let cristiano=new Characters("Cristiano Ronaldo", "Al Nassr", "Disparos", "/src/assets/img/cristiano.png", 5);
-let delacruz=new Characters("Nicolas De la Cruz", "River Plate", "Pases", "/src/assets/img/delacruz.png", 5);
-let danialves=new Characters("Dani Alves", "Pumas UNAM", "Defensa", "/src/assets/img/danialves.png", 5);
+let messi=new Characters("Lionel Messi", "messi", "Paris Saint-Germain", "Ataque", "/src/assets/img/messi.png", 5);
+let tchouameni=new Characters("Aurelien Tchouameni", "tchouameni", "Real Madrid", "Velocidad", "/src/assets/img/tchouameni.png", 5);
+let gvardiol=new Characters("Josko Gvardiol", "gvardiol", "Red Bull Leipzig", "Marcaje", "/src/assets/img/gvardiol.png", 5);
+let cristiano=new Characters("Cristiano Ronaldo", "cristiano", "Al Nassr", "Disparos", "/src/assets/img/cristiano.png", 5);
+let delacruz=new Characters("Nicolas De la Cruz", "delacruz", "River Plate", "Pases", "/src/assets/img/delacruz.png", 5);
+let danialves=new Characters("Dani Alves", "danialves", "Pumas UNAM", "Defensa", "/src/assets/img/danialves.png", 5);
 characters.push(messi, cristiano, delacruz, gvardiol, danialves, tchouameni);
 
 /*Agregar ataques de cada jugador*/
@@ -36,9 +37,9 @@ let cardContainer=document.getElementById("card_container");
 function createCards(characters){
         characters.forEach(character => {
             cardContainer.innerHTML+=`
-            <a href="#" id="${character.name}" style="text-decoration:none"><article class="card">
-            <div class="image_container" style="background-image: url(${character.photo})"></div>
-            <div class="card_description">
+            <a href="#" class="card" id="${character.id}" style="text-decoration:none"><article>
+            <div class="image_container" id="${character.id}" style="background-image: url(${character.photo})"></div>
+            <div class="card_description" id="${character.id}">
                 <h3 class="card_text">${character.name}</h3>
                 <h3 class="card_subtext">${character.team}</h3>
                 <h3 class="card_subtext">Bueno en: ${character.goodAt}</h3>
@@ -47,5 +48,24 @@ function createCards(characters){
         `
         });
 }
-
 createCards(characters);
+
+/*Ya creados los botones, los guardo en variables*/
+let messiButton=document.getElementById("messi");
+let cristianoButton=document.getElementById("cristiano");
+let delacruzButton=document.getElementById("delacruz");
+let gvardiolButton=document.getElementById("gvardiol");
+let danialvesButton=document.getElementById("danialves");
+let tchouameniButton=document.getElementById("tchouameni");
+let buttons=[messiButton, cristianoButton, delacruzButton, gvardiolButton, danialvesButton, tchouameniButton]
+
+/*Determinar a que jugador hice click*/
+buttons.forEach(button => {
+    button.addEventListener("click", prueba)
+});
+
+function prueba(e){
+    console.log(e);
+}
+
+
