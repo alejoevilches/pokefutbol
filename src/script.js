@@ -39,15 +39,57 @@ let danialves=new Characters("Dani Alves", "danialves", "Pumas UNAM", "Defensa",
 characters.push(messi, cristiano, delacruz, gvardiol, danialves, tchouameni);
 
 /*Agregar ataques de cada jugador*/
-messi.attacks.push("Gambeta", "Disparo", "Encarar", "Pase", "Defender");
-tchouameni.attacks.push("Velocidad", "Pase", "Corrida lateral", "Disparar", "Defender");
-gvardiol.attacks.push("Defender", "Atajar", "Bloquear", "Pase", "Disparo");
-cristiano.attacks.push("Disparo", "Festejo", "Tiro libre", "Defender", "Pase atras");
-delacruz.attacks.push("Pase adelante", "Velocidad", "Gambeta", "Atajar", "Disparo");
-danialves.attacks.push("Trabar", "Marcar", "Hacer falta", "Disparar", "Pase adelante");
+/*messi.attacks.push("Gambeta", "Disparo", "Encarar", "Pase", "Defender");*/
+messi.attacks.push(
+    {type:"ataque", name:"Gambeta"},
+    {type:"ataque", name:"Disparo"},
+    {type:"ataque", name:"Encarar"},
+    {type:"mediocampo", name:"Pase"},
+    {type:"defensa", name:"Defender"},
+)
+
+tchouameni.attacks.push(
+    {type:"mediocampo", name:"Velocidad"},
+    {type:"mediocampo", name:"Pase"},
+    {type:"mediocampo", name:"Corrida lateral"},
+    {type:"ataque", name:"Disparar"},
+    {type:"defensa", name:"Defender"},
+)
+
+gvardiol.attacks.push(
+    {type:"defensa", name:"Defender"},
+    {type:"defensa", name:"Bloquear"},
+    {type:"defensa", name:"Hacer falta"},
+    {type:"mediocampo", name:"Pase"},
+    {type:"ataque", name:"Disparo"},
+)
+
+cristiano.attacks.push(
+    {type:"ataque", name:"Disparo"},
+    {type:"ataque", name:"SIUUUU"},
+    {type:"ataque", name:"Tiro libre"},
+    {type:"defensa", name:"Defender"},
+    {type:"mediocampo", name:"Pase atras"},
+)
+
+delacruz.attacks.push(
+    {type:"mediocampo", name:"Pase adelante"},
+    {type:"mediocampo", name:"Velocidad"},
+    {type:"mediocampo", name:"Gambeta"},
+    {type:"defensa", name:"Pegar patada"},
+    {type:"ataque", name:"Disparo"},
+)
+
+danialves.attacks.push(
+    {type:"defensa", name:"Trabar"},
+    {type:"defensa", name:"Marcar"},
+    {type:"defensa", name:"Hacer falta"},
+    {type:"ataque", name:"Disparar"},
+    {type:"mediocampo", name:"Pase adelante"},
+)
 
 /*Crear las cards de cada jugador*/
-function createCards(characters){
+function createCards(){
         characters.forEach(character => {
             cardContainer.innerHTML+=`
             <a href="#" class="card" id="${character.id}" style="text-decoration:none"><article>
@@ -62,13 +104,9 @@ function createCards(characters){
         });
 }
 
+createCards();
+
 /* La función startGame contendrá todas las demas funciones que hacen que el juego se corra con normalidad. */
-function startGame(){
-    createCards(characters);
-}
-
-startGame();
-
 /*Ya creados los botones, los guardo en variables*/
 let messiButton=document.getElementById("messi");
 let cristianoButton=document.getElementById("cristiano");
@@ -98,9 +136,6 @@ function selectEnemyPlayer(){
     return characters[n];
 }
 
-/* Función que une boton seleccionado con el character del array */
-
-
 /* Función que muestra en pantalla el stage de batalla */
 function showBattleSection(){
     battleSection.style.display="flex"
@@ -110,11 +145,6 @@ function showBattleSection(){
     <h3 class="character_name">${playerSelection.name}</h3>
     <p class="character_lives">${playerLives}</p>
         <div class="character_buttons">
-            <button>Gambeta</button>
-            <button>Disparo</button>
-            <button>Encarar</button>
-            <button>Pase</button>
-            <button>Defender</button>
         </div>
     </div>
     <div class="character_info">
