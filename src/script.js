@@ -1,5 +1,8 @@
 /*Declaración de variables*/
 let characters=[]
+let playerSelection
+let enemySelection
+let cardContainer=document.getElementById("card_container");
 
 /*Clase creadora de personajes*/
 class Characters{
@@ -12,6 +15,11 @@ class Characters{
         this.lives=lives;
         this.attacks=[];
     }
+}
+
+/*Funcióna para crear numeros aleatorios*/
+function random(min, max){
+    return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 /*Acá se crea a cada personaje*/
@@ -32,14 +40,12 @@ delacruz.attacks.push("Pase adelante", "Velocidad", "Gambeta", "Atajar", "Dispar
 danialves.attacks.push("Trabar", "Marcar", "Hacer falta", "Disparar", "Pase adelante");
 
 /*Crear las cards de cada jugador*/
-let cardContainer=document.getElementById("card_container");
-
 function createCards(characters){
         characters.forEach(character => {
             cardContainer.innerHTML+=`
             <a href="#" class="card" id="${character.id}" style="text-decoration:none"><article>
             <div class="image_container" id="${character.id}" style="background-image: url(${character.photo})"></div>
-            <div class="card_description" id="${character.id}">
+            <div class="card_description">
                 <h3 class="card_text">${character.name}</h3>
                 <h3 class="card_subtext">${character.team}</h3>
                 <h3 class="card_subtext">Bueno en: ${character.goodAt}</h3>
@@ -62,6 +68,17 @@ let buttons=[messiButton, cristianoButton, delacruzButton, gvardiolButton, dania
 /*Determinar a que jugador hice click*/
 buttons.forEach(button => {
     button.addEventListener("click", ()=>{
-        console.log(button.id);
+        playerSelection=button.id;
+        enemySelection=selectEnemyPlayer();
+        console.log(playerSelection);
+        console.log(enemySelection.name);
+        cardContainer.style.display="none";
+        document.querySelector(".character_stage").style.display="none";
     })
 });
+
+/*Elegir jugador del enemigo*/
+function selectEnemyPlayer(){
+    n=random(0,5);
+    return characters[n];
+}

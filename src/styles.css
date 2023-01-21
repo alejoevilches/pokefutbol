@@ -76,6 +76,7 @@ body{
 /*Estilos para la pantalla de selección de personaje*/
 .character_stage{
     margin-top:7vh;
+    flex-flow: row-reverse;
 }
 
 .character_stage h2{
@@ -90,7 +91,7 @@ body{
 /*Estilos para las tarjetas*/
 #card_container{
     display:flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
