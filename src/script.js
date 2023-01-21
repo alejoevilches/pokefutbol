@@ -1,8 +1,15 @@
 /*Declaración de variables*/
 let characters=[]
+let playerButton
 let playerSelection
+let enemyPick
 let enemySelection
-let cardContainer=document.getElementById("card_container");
+let playerLives=5
+let enemyLives=5
+
+/* Declaración de constantes */
+const cardContainer=document.getElementById("card_container");
+const battleSection=document.getElementById("battle");
 
 /*Clase creadora de personajes*/
 class Characters{
@@ -54,7 +61,13 @@ function createCards(characters){
         `
         });
 }
-createCards(characters);
+
+/* La función startGame contendrá todas las demas funciones que hacen que el juego se corra con normalidad. */
+function startGame(){
+    createCards(characters);
+}
+
+startGame();
 
 /*Ya creados los botones, los guardo en variables*/
 let messiButton=document.getElementById("messi");
@@ -68,17 +81,47 @@ let buttons=[messiButton, cristianoButton, delacruzButton, gvardiolButton, dania
 /*Determinar a que jugador hice click*/
 buttons.forEach(button => {
     button.addEventListener("click", ()=>{
-        playerSelection=button.id;
-        enemySelection=selectEnemyPlayer();
-        console.log(playerSelection);
-        console.log(enemySelection.name);
+        playerButton=button.id;
+        playerSelection=characters.find(item => item.id == playerButton);
+        enemyPick=selectEnemyPlayer().id;
+        enemySelection=characters.find(item => item.id == enemyPick);
         cardContainer.style.display="none";
         document.querySelector(".character_stage").style.display="none";
+        showBattleSection();
     })
 });
+
 
 /*Elegir jugador del enemigo*/
 function selectEnemyPlayer(){
     n=random(0,5);
     return characters[n];
 }
+
+/* Función que une boton seleccionado con el character del array */
+
+
+/* Función que muestra en pantalla el stage de batalla */
+function showBattleSection(){
+    battleSection.style.display="flex"
+    battleSection.innerHTML=`
+    <div class="character_info">
+    <img class="character_section_photo" src="${playerSelection.photo}" alt="">
+    <h3 class="character_name">${playerSelection.name}</h3>
+    <p class="character_lives">${playerLives}</p>
+        <div class="character_buttons">
+            <button>Gambeta</button>
+            <button>Disparo</button>
+            <button>Encarar</button>
+            <button>Pase</button>
+            <button>Defender</button>
+        </div>
+    </div>
+    <div class="character_info">
+        <img class="character_section_photo" src="${enemySelection.photo}" alt="">
+        <h3 class="character_name">${enemySelection.name}</h3>
+        <p class="character_lives">${playerLives}</p>
+    </div>
+    `
+}
+

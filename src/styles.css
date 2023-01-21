@@ -42,6 +42,7 @@ body{
     --stage-titles-font:"Sofia Sans Semibold Italic";
     --card-title-font:"Sofia Sans Medium";
     --card-subtext-font:"Sofia Sans Light";
+    --border-radius:20px;
 }
 
 /*Estilos para sección de titulos*/
@@ -131,4 +132,57 @@ body{
 .card_subtext{
     font-family: var(--card-subtext-font);
     font-size:1.2em;
+}
+
+/*Estilos para la pantalla de la batalla*/
+.characters_info{
+    flex-direction: row;
+    gap:20px;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin:4vh 10vw;
+    color:white;
+}
+
+.character_info{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.character_name{
+    font-family: var(--card-title-font);
+    font-size: 1.7em;
+    padding:10px 0;
+}
+
+.character_lives{
+    width:60px;
+    height:60px;
+    background-color: darkgreen;
+    border:2px solid pink;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--h1-font);
+    font-size: 2em;
+}
+
+.character_section_photo{
+    width:250px;
+}
+
+.character_buttons{
+    display:inherit;
+    flex-direction: column;
+    gap:10px;
+    margin-top:10px;
+}
+
+.character_buttons button{
+    width:200px;
+    height:35px;
+    background-color: darkgreen;
+    border:1px solid pink;
+    color:white;
 }
