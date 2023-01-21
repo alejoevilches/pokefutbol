@@ -2,11 +2,15 @@
 let characters=[]
 let playerButton
 let playerSelection
+let playerAttackSelection
 let enemyPick
 let enemySelection
+let enemyAttackSelection
 let playerLives=5
 let enemyLives=5
 let buttonsSection;
+let attackButtons
+
 
 /* Declaración de constantes */
 const cardContainer=document.getElementById("card_container");
@@ -127,6 +131,7 @@ buttons.forEach(button => {
         cardContainer.style.display="none";
         document.querySelector(".character_stage").style.display="none";
         showBattleSection();
+        selectPlayerAttack();
     })
 });
 
@@ -156,9 +161,21 @@ function showBattleSection(){
     `;
     for(i=0;i<playerSelection.attacks.length;i++){
         buttonsSection=document.getElementById("buttons");
-        let button=`<button id="${playerSelection.attacks[i].id}">${playerSelection.attacks[i].name}</button>`
+        let button=`<button id="${playerSelection.attacks[i].type}" class="attack_button">${playerSelection.attacks[i].name}</button>`
         buttonsSection.innerHTML+=button;
     }
     };
 
+/* Función para detectar que ataque se seleccionó */
+function selectPlayerAttack(){
+    attackButtons=document.querySelectorAll(".attack_button");
+    attackButtons.forEach(button => {
+        button.addEventListener("click", (e)=>{
+            playerAttackSelection=e.target.id;
+            console.log(playerAttackSelection);
+            button.disabled="true"
+            button.style.background="#6e6e6e"
+        })
+    });
+}
 
