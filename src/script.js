@@ -6,6 +6,7 @@ let enemyPick
 let enemySelection
 let playerLives=5
 let enemyLives=5
+let buttonsSection;
 
 /* Declaración de constantes */
 const cardContainer=document.getElementById("card_container");
@@ -116,7 +117,7 @@ let danialvesButton=document.getElementById("danialves");
 let tchouameniButton=document.getElementById("tchouameni");
 let buttons=[messiButton, cristianoButton, delacruzButton, gvardiolButton, danialvesButton, tchouameniButton]
 
-/*Determinar a que jugador hice click*/
+/*Determinar a que jugador hice click, despues de eso haga desaparecer la stage de elegir jugador y que muestre la stage de batallas*/
 buttons.forEach(button => {
     button.addEventListener("click", ()=>{
         playerButton=button.id;
@@ -136,7 +137,7 @@ function selectEnemyPlayer(){
     return characters[n];
 }
 
-/* Función que muestra en pantalla el stage de batalla */
+/* Función que crea y muestra en pantalla en pantalla el stage de batalla */
 function showBattleSection(){
     battleSection.style.display="flex"
     battleSection.innerHTML=`
@@ -144,7 +145,7 @@ function showBattleSection(){
     <img class="character_section_photo" src="${playerSelection.photo}" alt="">
     <h3 class="character_name">${playerSelection.name}</h3>
     <p class="character_lives">${playerLives}</p>
-        <div class="character_buttons">
+        <div id="buttons" class="character_buttons">
         </div>
     </div>
     <div class="character_info">
@@ -152,6 +153,12 @@ function showBattleSection(){
         <h3 class="character_name">${enemySelection.name}</h3>
         <p class="character_lives">${playerLives}</p>
     </div>
-    `
-}
+    `;
+    for(i=0;i<playerSelection.attacks.length;i++){
+        buttonsSection=document.getElementById("buttons");
+        let button=`<button id="${playerSelection.attacks[i].id}">${playerSelection.attacks[i].name}</button>`
+        buttonsSection.innerHTML+=button;
+    }
+    };
+
 
