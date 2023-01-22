@@ -111,7 +111,6 @@ function createCards(){
 
 createCards();
 
-/* La función startGame contendrá todas las demas funciones que hacen que el juego se corra con normalidad. */
 /*Ya creados los botones, los guardo en variables*/
 let messiButton=document.getElementById("messi");
 let cristianoButton=document.getElementById("cristiano");
@@ -132,6 +131,7 @@ buttons.forEach(button => {
         document.querySelector(".character_stage").style.display="none";
         showBattleSection();
         selectPlayerAttack();
+        
     })
 });
 
@@ -175,7 +175,14 @@ function selectPlayerAttack(){
             console.log(playerAttackSelection);
             button.disabled="true"
             button.style.background="#6e6e6e"
+            selectEnemyAttack();
         })
     });
 }
 
+/* Función para que el oponente elija un ataque */
+function selectEnemyAttack(){
+    enemyAttackSelection=enemySelection.attacks[random(0,enemySelection.attacks.length-1)];
+    console.log(enemyAttackSelection.type);
+    enemySelection.attacks.splice(enemySelection.attacks.indexOf(enemyAttackSelection),1);
+}
