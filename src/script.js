@@ -6,12 +6,12 @@ let playerAttackSelection
 let enemyPick
 let enemySelection
 let enemyAttackSelection
-let playerLives=5
-let enemyLives=5
+let playerWins=0
+let enemyWins=0
 let buttonsSection;
 let messagesSection;
-let attackButtons
-
+let attackButtons;
+let battleResult;
 
 /* Declaración de constantes */
 const cardContainer=document.getElementById("card_container");
@@ -149,7 +149,7 @@ function showBattleSection(){
     <div class="character_info">
     <img class="character_section_photo" src="${playerSelection.photo}" alt="">
     <h3 class="character_name">${playerSelection.name}</h3>
-    <p class="character_lives">${playerLives}</p>
+    <p class="character_lives"><span id="player_wins">${playerWins}</span></p>
         <div id="buttons" class="character_buttons">
         </div>
     </div>
@@ -158,7 +158,7 @@ function showBattleSection(){
     <div class="character_info">
         <img class="character_section_photo" src="${enemySelection.photo}" alt="">
         <h3 class="character_name">${enemySelection.name}</h3>
-        <p class="character_lives">${playerLives}</p>
+        <p class="character_lives"><span id="enemy_wins">${playerWins}</span></p>
     </div>
     `;
     for(i=0;i<playerSelection.attacks.length;i++){
@@ -175,16 +175,13 @@ function selectPlayerAttack(){
         button.addEventListener("click", (e)=>{
             playerAttackSelection=e.target.innerText;
             playerAttackSelectionId=e.target.id;
-            console.log(playerAttackSelection);
             button.disabled="true"
             button.style.background="#6e6e6e"
             selectEnemyAttack();
             showMessages();
-            battles();
         })
     });
 }
-
 /* Función para que el oponente elija un ataque */
 function selectEnemyAttack(){
     enemyAttackSelection=enemySelection.attacks[random(0,enemySelection.attacks.length-1)];
@@ -194,21 +191,33 @@ function selectEnemyAttack(){
 
 function showMessages(){
     messagesSection=document.getElementById("messages");
+    console.log(playerWins)
+    console.log(enemyWins)
     messagesSection.innerHTML=`
     <p>Elegiste atacar con <span id="playerAttackSelection">${playerAttackSelection}</span> y tu oponente atacó con <span id="enemyAttackSelection">${enemyAttackSelection.name}</span>. El resultado es ${battles()}
     `
 }
 
 function battles(){
+    playerWinsSpan=document.getElementById("player_wins");
+    enemyWinsSpan=document.getElementById("enemy_wins");
     if (playerAttackSelectionId==enemyAttackSelectionId){
         return "Empate";
-    } else if (playerAttackSelectionId=="ataque" && enemyAttackSelectionId=="defensa"){
+    } else if (playerAttackSelectionId=="ataque" && enemyAttackSelectionId=="defensa") {
+        playerWins++
+        playerWinsSpan.innerText=playerWins
         return "Ganaste!"
-    } else if (playerAttackSelectionId=="mediocampo" && enemyAttackSelectionId=="disparo"){
+    } else if (playerAttackSelectionId=="mediocampo" && enemyAttackSelectionId=="ataque"){
+        playerWins++
+        playerWinsSpan.innerText=playerWins
         return "Ganaste!"
     } else if (playerAttackSelectionId=="defensa" && enemyAttackSelectionId=="mediocampo"){
+        playerWins++
+        playerWinsSpan.innerText=playerWins
         return "Ganaste!"
     } else {
+        enemyWins++;
+        enemyWinsSpan.innerText=enemyWins;
         return "Perdiste"
     }
-    }
+}
