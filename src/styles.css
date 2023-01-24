@@ -190,3 +190,14 @@ body{
     font-size:1.2em;
 
 }
+
+#messages{
+    width:500px;
+    height:80px;
+    background-color: darkgreen;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--card-subtext-font);
+    font-size: 1.3em;
+}

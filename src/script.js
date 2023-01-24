@@ -9,6 +9,7 @@ let enemyAttackSelection
 let playerLives=5
 let enemyLives=5
 let buttonsSection;
+let messagesSection;
 let attackButtons
 
 
@@ -131,7 +132,6 @@ buttons.forEach(button => {
         document.querySelector(".character_stage").style.display="none";
         showBattleSection();
         selectPlayerAttack();
-        
     })
 });
 
@@ -153,6 +153,8 @@ function showBattleSection(){
         <div id="buttons" class="character_buttons">
         </div>
     </div>
+    <div id="messages">
+    </div>
     <div class="character_info">
         <img class="character_section_photo" src="${enemySelection.photo}" alt="">
         <h3 class="character_name">${enemySelection.name}</h3>
@@ -171,11 +173,12 @@ function selectPlayerAttack(){
     attackButtons=document.querySelectorAll(".attack_button");
     attackButtons.forEach(button => {
         button.addEventListener("click", (e)=>{
-            playerAttackSelection=e.target.id;
+            playerAttackSelection=e.target.innerText;
             console.log(playerAttackSelection);
             button.disabled="true"
             button.style.background="#6e6e6e"
             selectEnemyAttack();
+            showMessages();
         })
     });
 }
@@ -183,6 +186,12 @@ function selectPlayerAttack(){
 /* Función para que el oponente elija un ataque */
 function selectEnemyAttack(){
     enemyAttackSelection=enemySelection.attacks[random(0,enemySelection.attacks.length-1)];
-    console.log(enemyAttackSelection.type);
     enemySelection.attacks.splice(enemySelection.attacks.indexOf(enemyAttackSelection),1);
+}
+
+function showMessages(){
+    messagesSection=document.getElementById("messages");
+    messagesSection.innerHTML=`
+    <p>Elegiste atacar con <span id="playerAttackSelection">${playerAttackSelection}</span> y tu oponente atacó con <span id="enemyAttackSelection">${enemyAttackSelection.name}</span>
+    `
 }
