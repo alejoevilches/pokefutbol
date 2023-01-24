@@ -174,11 +174,13 @@ function selectPlayerAttack(){
     attackButtons.forEach(button => {
         button.addEventListener("click", (e)=>{
             playerAttackSelection=e.target.innerText;
+            playerAttackSelectionId=e.target.id;
             console.log(playerAttackSelection);
             button.disabled="true"
             button.style.background="#6e6e6e"
             selectEnemyAttack();
             showMessages();
+            battles();
         })
     });
 }
@@ -186,12 +188,27 @@ function selectPlayerAttack(){
 /* Función para que el oponente elija un ataque */
 function selectEnemyAttack(){
     enemyAttackSelection=enemySelection.attacks[random(0,enemySelection.attacks.length-1)];
+    enemyAttackSelectionId=enemyAttackSelection.type
     enemySelection.attacks.splice(enemySelection.attacks.indexOf(enemyAttackSelection),1);
 }
 
 function showMessages(){
     messagesSection=document.getElementById("messages");
     messagesSection.innerHTML=`
-    <p>Elegiste atacar con <span id="playerAttackSelection">${playerAttackSelection}</span> y tu oponente atacó con <span id="enemyAttackSelection">${enemyAttackSelection.name}</span>
+    <p>Elegiste atacar con <span id="playerAttackSelection">${playerAttackSelection}</span> y tu oponente atacó con <span id="enemyAttackSelection">${enemyAttackSelection.name}</span>. El resultado es ${battles()}
     `
 }
+
+function battles(){
+    if (playerAttackSelectionId==enemyAttackSelectionId){
+        return "Empate";
+    } else if (playerAttackSelectionId=="ataque" && enemyAttackSelectionId=="defensa"){
+        return "Ganaste!"
+    } else if (playerAttackSelectionId=="mediocampo" && enemyAttackSelectionId=="disparo"){
+        return "Ganaste!"
+    } else if (playerAttackSelectionId=="defensa" && enemyAttackSelectionId=="mediocampo"){
+        return "Ganaste!"
+    } else {
+        return "Perdiste"
+    }
+    }
