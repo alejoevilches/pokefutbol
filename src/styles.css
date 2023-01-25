@@ -246,7 +246,7 @@ body{
 
 @media screen and (max-width:920px) {
     .character_section_photo{
-        width:100px;
+        width:110px;
     }
 
     .character_lives{
@@ -264,14 +264,18 @@ body{
     }
 }
 
-@media screen and (max-width:550px) {
-    #messages{
-        width:200px;
-        font-size: 1em;
+@media screen and (max-width:560px) {
+    .messages_section{
+        display:flex;
+        position: absolute;
+        bottom:500px;
+        left:70px;
+        height:50px;
     }
 
-    .character_info{
-        margin:0 3vw;
+    .characters_info{
+        position:relative;
+        top:50px;
     }
 }
 

@@ -167,6 +167,13 @@ function showBattleSection(){
         <h3 class="character_name">${enemySelection.name}</h3>
         <p class="character_lives"><span id="enemy_wins">${playerWins}</span></p>
     </div>
+    <div class="messages_section_responsive">
+        <div id="messages_responsive">
+        </div>
+        <div id="final_message_responsive">
+        </div>
+        <button id="restart" class="attack_button" onclick="location.reload()">Reiniciar juego</button>
+    </div>
     `;
     for(i=0;i<playerSelection.attacks.length;i++){
         buttonsSection=document.getElementById("buttons");
