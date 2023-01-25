@@ -43,8 +43,8 @@ let tchouameni=new Characters("Aurelien Tchouameni", "tchouameni", "Real Madrid"
 let gvardiol=new Characters("Josko Gvardiol", "gvardiol", "Red Bull Leipzig", "Marcaje", "/src/assets/img/gvardiol.png", 5);
 let cristiano=new Characters("Cristiano Ronaldo", "cristiano", "Al Nassr", "Disparos", "/src/assets/img/cristiano.png", 5);
 let delacruz=new Characters("Nicolas De la Cruz", "delacruz", "River Plate", "Pases", "/src/assets/img/delacruz.png", 5);
-let danialves=new Characters("Dani Alves", "danialves", "Pumas UNAM", "Defensa", "/src/assets/img/danialves.png", 5);
-characters.push(messi, cristiano, delacruz, gvardiol, danialves, tchouameni);
+let thiagosilva=new Characters("Thiago Silva", "thiagosilva", "Chelsea", "Defensa", "/src/assets/img/thiagosilva.png", 5);
+characters.push(messi, cristiano, delacruz, gvardiol, thiagosilva, tchouameni);
 
 /*Agregar ataques de cada jugador*/
 /*messi.attacks.push("Gambeta", "Disparo", "Encarar", "Pase", "Defender");*/
@@ -88,7 +88,7 @@ delacruz.attacks.push(
     {type:"ataque", name:"Disparo"},
 )
 
-danialves.attacks.push(
+thiagosilva.attacks.push(
     {type:"defensa", name:"Trabar"},
     {type:"defensa", name:"Marcar"},
     {type:"defensa", name:"Hacer falta"},
@@ -119,9 +119,9 @@ let messiButton=document.getElementById("messi");
 let cristianoButton=document.getElementById("cristiano");
 let delacruzButton=document.getElementById("delacruz");
 let gvardiolButton=document.getElementById("gvardiol");
-let danialvesButton=document.getElementById("danialves");
+let thiagosilvaButton=document.getElementById("thiagosilva");
 let tchouameniButton=document.getElementById("tchouameni");
-let buttons=[messiButton, cristianoButton, delacruzButton, gvardiolButton, danialvesButton, tchouameniButton]
+let buttons=[messiButton, cristianoButton, delacruzButton, gvardiolButton, thiagosilvaButton, tchouameniButton]
 
 /*Determinar a que jugador hice click, despues de eso haga desaparecer la stage de elegir jugador y que muestre la stage de batallas*/
 buttons.forEach(button => {
