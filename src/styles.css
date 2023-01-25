@@ -264,6 +264,17 @@ body{
     }
 }
 
+@media screen and (max-width:550px) {
+    #messages{
+        width:200px;
+        font-size: 1em;
+    }
+
+    .character_info{
+        margin:0 3vw;
+    }
+}
+
 @media screen and (max-width:200px) {
     #messages{
         background-color: pink;
