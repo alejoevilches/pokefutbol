@@ -281,6 +281,10 @@ body{
     .attack_button:last-of-type{    
         margin-bottom:2vh;
     }
+
+    #final_message{
+        font-size:20px;
+    }
 }
 
 @media screen and (max-width:200px) {
