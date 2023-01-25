@@ -140,7 +140,7 @@ body{
     gap:20px;
     align-items: flex-start;
     justify-content: space-between;
-    margin:4vh 10vw;
+    margin:4vh 5vw;
     color:white;
 }
 
@@ -191,10 +191,16 @@ body{
 
 }
 
+/*Estilos para los popups de mensajes*/
+
 .messages_section{
     display:flex;
     align-items: center;
     flex-direction: column;
+}
+
+.messages_section_responsive{
+    display:none;
 }
 
 #messages{
@@ -230,4 +236,36 @@ body{
 #restart{
     margin-top:20px;
     display:none;
+}
+
+@media screen and (max-width:1200px) {
+    #messages{
+        width:300px;
+    }
+}
+
+@media screen and (max-width:920px) {
+    .character_section_photo{
+        width:100px;
+    }
+
+    .character_lives{
+        width:40px;
+        height:40px;
+    }
+
+    .attack_button{
+        width:100px;
+    }
+
+    #final_message{
+        width: 150px;
+        height: 50px;
+    }
+}
+
+@media screen and (max-width:200px) {
+    #messages{
+        background-color: pink;
+    }
 }
