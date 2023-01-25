@@ -160,7 +160,7 @@ function showBattleSection(){
         </div>
         <div id="final_message">
         </div>
-        <button id="restart">Reiniciar juego</button>
+        <button id="restart" class="attack_button" onclick="location.reload()">Reiniciar juego</button>
     </div>
     <div class="character_info">
         <img class="character_section_photo" src="${enemySelection.photo}" alt="">
@@ -207,6 +207,7 @@ function showMessages(){
 function whoWins(){
     let finalMessageSection=document.getElementById("final_message")
     if (playsCount==5){
+        document.getElementById("restart").style.display="block";
         finalMessageSection.style.display="flex";
         if (playerWins==enemyWins){
             finalResult="EMPATE"

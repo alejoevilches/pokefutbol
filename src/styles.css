@@ -180,7 +180,7 @@ body{
     margin-top:10px;
 }
 
-.character_buttons button{
+.attack_button{
     width:200px;
     height:35px;
     background-color: darkgreen;
@@ -225,4 +225,9 @@ body{
     color:darkgreen;
     font-family: var(--h1-font);
     font-size:30px;
+}
+
+#restart{
+    margin-top:20px;
+    display:none;
 }
