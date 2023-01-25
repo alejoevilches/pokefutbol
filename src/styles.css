@@ -191,13 +191,38 @@ body{
 
 }
 
+.messages_section{
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+}
+
 #messages{
     width:500px;
     height:80px;
     background-color: darkgreen;
     display:flex;
+    padding:0 15px;
+    text-align: center;
     align-items: center;
     justify-content: center;
     font-family: var(--card-subtext-font);
     font-size: 1.3em;
+}
+
+#final_message{
+    display:none;
+    border:2px solid pink;
+    margin-top:20px;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 100px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background-color: pink;
+    color:darkgreen;
+    font-family: var(--h1-font);
+    font-size:30px;
 }

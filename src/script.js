@@ -8,10 +8,12 @@ let enemySelection
 let enemyAttackSelection
 let playerWins=0
 let enemyWins=0
+let playsCount=0
 let buttonsSection;
 let messagesSection;
 let attackButtons;
 let battleResult;
+let finalResult;
 
 /* Declaración de constantes */
 const cardContainer=document.getElementById("card_container");
@@ -153,7 +155,12 @@ function showBattleSection(){
         <div id="buttons" class="character_buttons">
         </div>
     </div>
-    <div id="messages">
+    <div class="messages_section">
+        <div id="messages">
+        </div>
+        <div id="final_message">
+        </div>
+        <button id="restart">Reiniciar juego</button>
     </div>
     <div class="character_info">
         <img class="character_section_photo" src="${enemySelection.photo}" alt="">
@@ -191,33 +198,52 @@ function selectEnemyAttack(){
 
 function showMessages(){
     messagesSection=document.getElementById("messages");
-    console.log(playerWins)
-    console.log(enemyWins)
     messagesSection.innerHTML=`
     <p>Elegiste atacar con <span id="playerAttackSelection">${playerAttackSelection}</span> y tu oponente atacó con <span id="enemyAttackSelection">${enemyAttackSelection.name}</span>. El resultado es ${battles()}
-    `
+    `;
+    whoWins();
+}
+
+function whoWins(){
+    let finalMessageSection=document.getElementById("final_message")
+    if (playsCount==5){
+        finalMessageSection.style.display="flex";
+        if (playerWins==enemyWins){
+            finalResult="EMPATE"
+        } else if (playerWins > enemyWins){
+            finalResult="GANASTE :)"
+        } else {
+            finalResult="PERDISTE :("
+        }
+    }
+    finalMessageSection.innerText=finalResult;
 }
 
 function battles(){
     playerWinsSpan=document.getElementById("player_wins");
     enemyWinsSpan=document.getElementById("enemy_wins");
-    if (playerAttackSelectionId==enemyAttackSelectionId){
-        return "Empate";
-    } else if (playerAttackSelectionId=="ataque" && enemyAttackSelectionId=="defensa") {
-        playerWins++
-        playerWinsSpan.innerText=playerWins
-        return "Ganaste!"
-    } else if (playerAttackSelectionId=="mediocampo" && enemyAttackSelectionId=="ataque"){
-        playerWins++
-        playerWinsSpan.innerText=playerWins
-        return "Ganaste!"
-    } else if (playerAttackSelectionId=="defensa" && enemyAttackSelectionId=="mediocampo"){
-        playerWins++
-        playerWinsSpan.innerText=playerWins
-        return "Ganaste!"
-    } else {
-        enemyWins++;
-        enemyWinsSpan.innerText=enemyWins;
-        return "Perdiste"
-    }
+        if (playerAttackSelectionId===enemyAttackSelectionId){
+            playsCount++
+            return "Empate";
+        } else if (playerAttackSelectionId=="ataque" && enemyAttackSelectionId=="defensa") {
+            playsCount++
+            playerWins++
+            playerWinsSpan.innerText=playerWins
+            return "Ganaste!"
+        } else if (playerAttackSelectionId=="mediocampo" && enemyAttackSelectionId=="ataque"){
+            playsCount++
+            playerWins++
+            playerWinsSpan.innerText=playerWins
+            return "Ganaste!"
+        } else if (playerAttackSelectionId=="defensa" && enemyAttackSelectionId=="mediocampo"){
+            playsCount++
+            playerWins++
+            playerWinsSpan.innerText=playerWins
+            return "Ganaste!"
+        } else {
+            playsCount++
+            enemyWins++;
+            enemyWinsSpan.innerText=enemyWins;
+            return "Perdiste"
+        } 
 }
