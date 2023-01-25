@@ -277,6 +277,10 @@ body{
         position:relative;
         top:190px;
     }
+
+    .attack_button:last-of-type{    
+        margin-bottom:2vh;
+    }
 }
 
 @media screen and (max-width:200px) {
